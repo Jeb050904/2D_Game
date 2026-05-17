@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cq11b8faeqsw5"]
+
+[ext_resource type="Script" uid="uid://b2gh7lt6n4yd6" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://3qwovb7u8ylm" path="res://bullet.tscn" id="2_onrkg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
+radius = 28.0
+height = 98.0
+
+[node name="Player" type="Area2D" unique_id=1558379070]
+script = ExtResource("1_4flbx")
+bullet_scene = ExtResource("2_onrkg")
+
+[node name="Spaceship" type="Polygon2D" parent="." unique_id=759543371]
+color = Color(0.2509804, 0.4745098, 1, 1)
+polygon = PackedVector2Array(0, -60, 8, -30, 22, -38, 28, -20, 14, -10, 14, 20, 22, 30, 10, 40, 0, 50, -10, 40, -22, 30, -14, 20, -14, -10, -28, -20, -22, -38, -8, -30)
+
+[node name="Wing right" type="Polygon2D" parent="Spaceship" unique_id=830415514]
+color = Color(0.2509804, 0.4745098, 1, 1)
+polygon = PackedVector2Array(14, 20, 38, 45, 28, 50, 10, 40)
+
+[node name="Wing left" type="Polygon2D" parent="Spaceship/Wing right" unique_id=1500901810]
+color = Color(0.2509804, 0.4745098, 1, 1)
+polygon = PackedVector2Array(-14, 20, -38, 45, -28, 50, -10, 40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1947763439]
+shape = SubResource("CapsuleShape2D_onrkg")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

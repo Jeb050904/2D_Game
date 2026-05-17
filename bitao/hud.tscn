@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cl5t8uy5clk7"]
+
+[ext_resource type="Script" uid="uid://bm6c1pk15ei4" path="res://hud.gd" id="1_37p78"]
+
+[node name="HUD" type="CanvasLayer" unique_id=313117000]
+script = ExtResource("1_37p78")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=941602536]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 71.0
+offset_bottom = 33.0
+text = "Score: 0"
+
+[node name="LivesLabel" type="Label" parent="." unique_id=768165634]
+offset_left = 400.0
+offset_top = 10.0
+offset_right = 457.0
+offset_bottom = 33.0
+text = "Lives: 3"
+
+[node name="LevelLabel" type="Label" parent="." unique_id=868724632]
+offset_left = 220.0
+offset_top = 10.0
+offset_right = 278.0
+offset_bottom = 33.0
+text = "Level: 1"
+
+[node name="MessageLabel" type="Label" parent="." unique_id=650534860]
+offset_left = 127.0
+offset_top = 325.0
+offset_right = 347.0
+offset_bottom = 370.0
+theme_override_font_sizes/font_size = 32
+text = "Space Shooter"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="." unique_id=205373591]
+offset_left = 197.0
+offset_top = 375.0
+offset_right = 293.0
+offset_bottom = 406.0
+text = "Start Game"
+
+[node name="MessageTimer" type="Timer" parent="." unique_id=1731951819]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_timer_timeout"]

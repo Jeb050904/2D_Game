@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b7vusk6qg0csd"]
+
+[ext_resource type="Script" uid="uid://ctbphvbl1rmrc" path="res://main.gd" id="1_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dkf87wjj7bmkn" path="res://enemy.tscn" id="2_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cq11b8faeqsw5" path="res://player.tscn" id="3_7mycd"]
+[ext_resource type="PackedScene" uid="uid://cl5t8uy5clk7" path="res://hud.tscn" id="4_272bh"]
+
+[node name="Main" type="Node" unique_id=2004355936]
+script = ExtResource("1_1bvp3")
+enemy_scene = ExtResource("2_lquwl")
+
+[node name="Background" type="ColorRect" parent="." unique_id=242099403]
+offset_right = 480.0
+offset_bottom = 720.0
+color = Color(0, 0, 0.06666667, 1)
+
+[node name="Player" parent="." unique_id=1558379070 instance=ExtResource("3_7mycd")]
+
+[node name="HUD" parent="." unique_id=313117000 instance=ExtResource("4_272bh")]
+
+[node name="EnemyTimer" type="Timer" parent="." unique_id=1997938605]
+
+[node name="ScoreTimer" type="Timer" parent="." unique_id=1478013214]
+
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[connection signal="lives_changed" from="Player" to="." method="_on_player_lives_changed"]
+[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
+[connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
